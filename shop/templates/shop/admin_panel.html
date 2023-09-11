@@ -1,0 +1,29 @@
+
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پنل مدیریتی</title>
+</head>
+<body>
+    <h1>پنل مدیریتی</h1>
+    
+    <div>
+        <h2>اطلاعات محصولات:</h2>
+        <ul>
+            {% for product in products %}
+                <li>محصول {{ product.title }} -   موجودی: {{ product.quantity_available }} عدد</li>
+            {% endfor %}
+        </ul>
+        <p>مجموع موجودی محصولات: {{ total_stock }} عدد</p>
+    </div>
+
+    <div>
+        <h2>اطلاعات مالی:</h2>
+        <p>قیمت کل محصولات موجود: {{ total_revenue }} تومان</p>
+    </div>
+    
+</body>
+</html>

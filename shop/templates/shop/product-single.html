@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="hero-wrap hero-bread" style="background-image: url('{% static "pics/bg_1.jpg" %}');">
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-center justify-content-center">
+        <div class="col-md-9 ftco-animate text-center">
+            <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'shop:index' %}">خانه</a></span> </p>
+          <h1 class="mb-0 bread">محصولات تکی</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-5 ftco-animate">
+                <a href="{{ product.productimagemodel_set.first.image.url }}" class="image-popup">
+                    <img src="{{ product.productimagemodel_set.first.image.url }}" class="img-fluid" alt="{{ product.title }}">
+                </a>
+            </div>
+            <div class="col-lg-6 product-details pl-md-5 ftco-animate">
+                <h3>{{ product.title }}</h3>
+                <div class="rating d-flex">
+                    <p class="text-left mr-4">
+                        <a href="#" class="mr-2">{{ product.vote|floatformat }} <span class="ion-ios-star-outline"></span></a>
+                    </p>
+                    <p class="text-left mr-4">
+                        <a href="#" class="mr-2" style="color: #000;">{{ product.likes }} <span style="color: #bbb;">رای</span></a>
+                    </p>
+                    <p class="text-left">
+                        <a href="#" class="mr-2" style="color: #000;">{{ product.quantity_available }} <span style="color: #bbb;">فروخته شده</span></a>
+                    </p>
+                </div>
+                {% if product.sale_price %}
+                    <p class="price">
+                        <span class="old-price">{{ product.price|floatformat:"0" }} تومان</span>
+                        <span class="sale-price">{{ product.sale_price|floatformat:"0" }} تومان</span>
+                    </p>
+                {% else %}
+                    <p class="price"><span>{{ product.price|floatformat:"0" }} تومان</span></p>
+                {% endif %}
+                <p>{{ product.description }}</p>
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="form-group d-flex">
+                            <div class="select-wrap">
+                                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                <select name="" id="" class="form-control">
+                                    {% for size_choice in product.SIZE_CHOICES %}
+                                        <option value="{{ size_choice.0 }}">{{ size_choice.1 }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group col-md-6 d-flex mb-3">
+
+                        <div class="w-100"></div>
+                            <div class="input-group col-md-6 d-flex mb-3">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <!-- <span class="input-group-btn mr-2">
+                                        <button type="submit" class="quantity-left-minus btn" data-type="minus" data-field="">
+                                            <i class="ion-ios-remove"></i>
+                                        </button>
+                                    </span> -->
+                                    <input type="number" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+                                    <!-- <span class="input-group-btn ml-2">
+                                        <button type="submit" class="quantity-right-plus btn" data-type="plus" data-field="">
+                                            <i class="ion-ios-add"></i>
+                                        </button>
+                                    </span> -->
+                                </form>
+                            </div>
+                    </div>
+
+                
+                    <div class="col-md-12">
+                        <p style="color: #000;">موجودی {{ product.quantity_available }} کیلوگرم</p>
+                    </div>
+                </div>
+                <p><a href="{% url 'shop:cart' %}" class="btn btn-black py-3 px-5">اضافه به سبد خرید</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  <section class="ftco-section">
+      <div class="container">
+              <div class="row justify-content-center mb-3 pb-3">
+        <div class="col-md-12 heading-section text-center ftco-animate">
+            <span class="subheading">محصولات</span>
+          <h2 class="mb-4">محصولات مشابه</h2>
+          <p>سلامتی خود را تضمین کنید</p>
+        </div>
+      </div>   		
+      </div>
+      <h2>محصولات مشابه</h2>
+  <div class="container">
+    <div class="row">
+      {% for related_product in related_products %}
+        <div class="col-md-6 col-lg-3 ftco-animate">
+          <div class="product">
+            <a href="#" class="img-prod">
+              <img class="img-fluid" src="{{ related_product.productimagemodel_set.first.image.url }}" alt="{{ related_product.title }}">
+              {% if related_product.sale_price %}
+                <span class="status">تخفیف</span>
+              {% endif %}
+              <div class="overlay"></div>
+            </a>
+            <div class="text py-3 pb-4 px-3 text-center">
+              <h3><a href="#">{{ related_product.title }}</a></h3>
+              <div class="d-flex">
+                <div class="pricing">
+                  {% if related_product.sale_price %}
+                    <p class="price"><span class="mr-2 price-dc">{{ related_product.price }} تومان</span><span class="price-sale">{{ related_product.sale_price }} تومان</span></p>
+                  {% else %}
+                    <p class="price"><span>{{ related_product.price }} تومان</span></p>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="bottom-area d-flex px-3">
+                <div class="m-auto d-flex">
+                  <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                    <span><i class="ion-ios-menu"></i></span>
+                  </a>
+                  <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                    <span><i class="ion-ios-cart"></i></span>
+                  </a>
+                  <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                    <span><i class="ion-ios-heart"></i></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  </section>
+
+<!--Start Subscribe-->
+<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
+    <div class="container py-4">
+        <div class="row d-flex justify-content-center py-5">
+            <div class="col-md-6">
+                <h2 style="font-size: 22px;" class="mb-0">مشترک شدن در خبرنامه ما</h2>
+                <span>دریافت ایمیل درباره آخرین مغازه ها و پیشنهادات ویژه</span>
+            </div>
+            <div class="col-md-6 d-flex align-items-center">
+                <form action="#" class="subscribe-form">
+                    <div class="form-group d-flex">
+                        <input type="text" class="form-control" placeholder="ایمیل آدرس خود را وارد کنید">
+                        <input type="submit" value="اشتراک" class="submit px-3">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End Subscribe-->
+
+
+{% endblock %}

@@ -1,0 +1,37 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>User Profile</h1>
+<h2>Profile Information</h2>
+<p>Name: {{ user_profile.name }}</p>
+<p>National ID: {{ user_profile.national_id }}</p>
+<p>Phone Number: {{ user_profile.phone_number }}</p>
+<p>Gender: {{ user_profile.get_gender_display }}</p>
+<p>Birth Date: {{ user_profile.birth_date }}</p>
+<p>Date Created: {{ user_profile.date_created }}</p>
+<a href="{% url 'accounts:edit_profile' %}">Edit Profile</a>
+
+<hr>
+
+<h2>آدرس‌ها</h2>
+
+<a href="{% url 'accounts:create_address' %}">Create New address </a>
+
+<ul>
+  {% for address in user_addresses %}
+  <a href="{% url 'accounts:edit_address' address.id %}">Edit Address</a>
+    <li>
+      آدرس: {{ address.address }}
+      شهر: {{ address.city }}
+      استان: {{ address.state }}
+      کد پستی: {{ address.postal_code }}
+    </li>
+  {% endfor %}
+</ul>
+<hr>
+
+<h2>Orders</h2>
+<h2>Invoices</h2>
+{% endblock %}

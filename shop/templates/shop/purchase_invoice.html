@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Purchase Invoice</title>
+</head>
+<body>
+    <h1>Purchase Invoice</h1>
+
+    {% if purchase_invoice %}
+        <p>Invoice ID: {{ purchase_invoice.id }}</p>
+        <p>Total Cost: {{ purchase_invoice.cost }}</p>
+        <p>User: {{ purchase_invoice.user }}</p>
+
+        <p>Items:</p>
+        <ul>
+            {% for product_id, item in cart.items %}
+                <li>
+                    Product Name: {{ item.product.title }}
+                    Quantity: {{ item.quantity }}
+                    Item Total Price:{{ item.item_total_price }}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <form method="post" action="">
+            {% csrf_token %}
+            <p>Select an Address:</p>
+            <select name="selected_address">
+                      
+                {% if not addresses %}
+                    <p><a href="{% url 'accounts:create_address' %}">Create New Address</a></p>
+                {% else %}
+                    {% for address in addresses %}
+                        <option value="{{ address.id }}">{{ address.address }}, {{ address.city }}, {{ address.state }}, {{ address.postal_code }}</option>
+                    {% endfor %}
+
+                {% endif %}
+        
+            </select>
+            <br>
+            <br>
+
+            <input type="submit" value="Checkout">
+        </form>
+
+    {% else %}
+        <p>No purchase invoice available.</p>
+        
+    {% endif %}
+
+    
+    <p><a href="{% url 'shop:cart_view' %}">Back to Cart</a></p>
+</body>
+</html>
