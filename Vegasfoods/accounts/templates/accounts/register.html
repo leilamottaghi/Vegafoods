@@ -1,0 +1,58 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<form method="post" class="form text-right">
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label for="id_username">نام کاربری:</label>
+        {{ form.username }}
+        <span class="helptext">الزامی است. حداکثر ۱۵۰ کاراکتر و حاوی حروف، اعداد و کاراکترهای @/./+/-/_ باشد.</span>
+    </div>
+    {% if form.username.errors %}
+    <ul class="errorlist">
+        {% for error in form.username.errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
+    <div class="form-group">
+        <label for="id_password1">رمز عبور:</label>
+        {{ form.password1 }}
+        <span class="helptext">
+            <ul>
+                <li>رمز عبور شما نمی‌تواند شبیه اطلاعات شخصی دیگری از شما باشد.</li>
+                <li>رمز عبور شما باید حداقل ۸ کاراکتر داشته باشد.</li>
+                <li>رمز عبور شما نمی‌تواند یک رمز عبور متداول باشد.</li>
+                <li>رمز عبور شما نمی‌تواند کاملاً عددی باشد.</li>
+            </ul>
+        </span>
+    </div>
+    {% if form.password1.errors %}
+        <ul class="errorlist">
+            {% for error in form.password1.errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <div class="form-group">
+        <label for="id_password2">تایید رمز عبور:</label>
+        {{ form.password2 }}
+        <span class="helptext">رمز عبور را مجدداً برای تأیید وارد کنید.</span>
+    </div>
+    {% if form.password2.errors %}
+        <ul class="errorlist">
+            {% for error in form.password2.errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <button type="submit" class="btn btn-primary float-right">ثبت نام</button>
+</form>
+{% endblock %}

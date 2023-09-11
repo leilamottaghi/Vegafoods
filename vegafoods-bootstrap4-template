@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-T4W5CMR');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>پیش نمایش Vegafoods - قالب بوت استرپ فروشگاهی مواد غذایی وگا فودز :: وب روبیک</title>
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="stylesheet" href="https://webrubik.com/assets/css/product-preview.css">
+    <style>
+        body {
+            height: calc(100% - 51px);
+            box-sizing: content-box;
+            min-height: 600px;
+        }
+    </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T4W5CMR" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    <div id="switcher">
+        <div class="center">
+            <div class="logo">
+                <a href="https://webrubik.com">
+                    <img class="logo" src="https://webrubik.com/assets/images/logo.webp" alt="وب روبیک">
+                </a>
+            </div>
+
+            <ul>
+                <li id="theme_list">
+                    <a href="https://webrubik.com" id="theme_select">فایل های بیشتر</a>
+                </li>
+            </ul>
+            <div class="responsive">
+                <a href="#" class="desktop active" title="View Desktop Version"></a>
+                <a href="#" class="tabletlandscape" title="View Tablet Landscape (1024x768)"></a>
+                <a href="#" class="tabletportrait" title="View Tablet Portrait (768x1024)"></a>
+                <a href="#" class="mobilelandscape" title="View Mobile Landscape (480x320)"></a>
+                <a href="#" class="mobileportrait" title="View Mobile Portrait (320x480)"></a>
+            </div>
+
+            <ul class="links">
+                <li class="download">
+                                                    <a href="https://webrubik.com/users/login-register?back=https://webrubik.com/product/preview/vegafoods-bootstrap4-template&amp;product=vegafoods-bootstrap4-template" class="btn-get-temp price free" data-id="200">
+                                <img src="https://themewagon.com/wp-content/themes/wagoncore/img/download.png" alt="">
+                                دانلود رایگان
+                            </a>
+                                        </li>
+                <li class="close">
+                    <a href="https://webrubik.com/product/vegafoods-bootstrap4-template">
+                        <img src="https://themewagon.com/wp-content/themes/wagoncore/img/cross.png" alt="">
+                        بازگشت
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <iframe id="iframe" src="https://preview.webrubik.com/vegafoods-bootstrap4-template" frameborder="0" width="100%"></iframe>
+
+    
+    <script src="https://webrubik.com/assets/js/jquery.min.js"></script>
+    <script type="text/javascript">
+        // global app configuration object
+        var config = {
+            routes: {
+                reloadCart: "https://webrubik.com/cart/reload",
+            }
+        };
+    </script>
+    <script src="https://webrubik.com/assets/js/js.cookie.js"></script>
+    <script src="https://webrubik.com/assets/js/public.js?v=5"></script>
+    <script type="text/javascript">
+        var IS_IPAD=navigator.userAgent.match(/iPad/i)!=null;
+        $("#header-bar").hide();
+        clicked="desktop";
+        var t= {
+                desktop:"100%",tabletlandscape:1040,tabletportrait:788,mobilelandscape:500,mobileportrait:340,placebo:0
+            }
+        ;
+        jQuery(".responsive a").on("click",function() {
+                var e=jQuery(this);
+                for (device in t) {
+                    if(e.hasClass(device)) {
+                        clicked=device;
+                        jQuery("#iframe").width(t[device]);
+                        if(clicked==device) {
+                            jQuery(".responsive a").removeClass("active");
+                            e.addClass("active")
+                        }
+                    }
+                }
+                return false
+            }
+        );
+        if(IS_IPAD) {
+            $("#iframe").css("padding-bottom","60px")
+        }
+    </script>
+</body>
+</html>

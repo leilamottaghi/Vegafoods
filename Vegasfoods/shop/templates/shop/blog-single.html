@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="hero-wrap hero-bread" style="background-image: url('pics/bg_1.jpg');">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <p class="breadcrumbs"><span class="ml-2"><a href="index.html">خانه</a></span></p>
+                <h1 class="mb-0 bread">{{ blog.content }}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

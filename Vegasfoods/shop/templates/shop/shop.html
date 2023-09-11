@@ -1,0 +1,137 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="hero-wrap hero-bread" style="background-image: url('{% static "pics/bg_1.jpg" %}');">
+    
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-center justify-content-center">
+        <div class="col-md-9 ftco-animate text-center">
+            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">خانه</a></span> </p>
+          <h1 class="mb-0 bread">محصولات</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="ftco-section">
+      <div class="container">
+          <div class="row justify-content-center">
+              <div class="col-md-10 mb-5 text-center">
+                  <ul class="product-category">
+                      <li><a href="#" class="active">همه ی محصولات</a></li>
+                      <li><a href="#">سبزیجات</a></li>
+                      <li><a href="#">میوه</a></li>
+                      <li><a href="#">آبمیوه</a></li>
+                      <li><a href="#">میوه خشک</a></li>
+                  </ul>
+              </div>
+          </div>
+          <div class="row">
+            {% for product in page_products %}
+                <div class="col-md-6 col-lg-3 ftco-animate">
+                    <div class="product">
+                        <a href="#" class="img-prod"><img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                            {% if product.discount_percentage > 0 %}
+                                <span class="status">{{ product.discount_percentage }}%</span>
+                            {% endif %}
+                            <div class="overlay"></div>
+                        </a>
+                        <div class="text py-3 pb-4 px-3 text-center">
+                            <h3><a href="#">{{ product.name }}</a></h3>
+                            <div class="d-flex">
+                                <div class="pricing">
+                                    {% if product.discounted_price %}
+                                        <p class="price">
+                                            <span class="mr-2 price-dc">{{ product.price }} تومان</span>
+                                            <span class="price-sale">{{ product.discounted_price }} تومان</span>
+                                        </p>
+                                    {% else %}
+                                        <p class="price"><span>{{ product.price }} تومان</span></p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="bottom-area d-flex px-3">
+                                <div class="m-auto d-flex">
+                                    <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                        <span><i class="ion-ios-menu"></i></span>
+                                    </a>
+                                    <!-- <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                        <span><i class="ion-ios-cart"></i></span>
+                                    </a> -->
+
+                                    <form action="{% url 'shop:cart_add' product.id %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                                        <button type="submit" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                            <span><i class="ion-ios-cart"></i></span>
+                                        </button>
+                                    </form>
+                    
+                                    <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                        <span><i class="ion-ios-heart"></i></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="row mt-5">
+            <div class="col text-center">
+                <div class="block-27">
+                    <ul class="pagination">
+                        {% if page_products.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?page=1">&lt;&lt;</a></li>
+                            <li class="page-item"><a class="page-link" href="?page={{ page_products.previous_page_number }}">&lt;</a></li>
+                        {% endif %}
+                        
+                        {% for num in page_products.paginator.page_range %}
+                            {% if num == page_products.number %}
+                                <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                            {% else %}
+                                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        
+                        {% if page_products.has_next %}
+                            <li class="page-item"><a class="page-link" href="?page={{ page_products.next_page_number }}">&gt;</a></li>
+                            <li class="page-item"><a class="page-link" href="?page={{ page_products.paginator.num_pages }}">&gt;&gt;</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+      </div>
+  </section>
+
+
+<!--Start Subscribe-->
+<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
+    <div class="container py-4">
+        <div class="row d-flex justify-content-center py-5">
+            <div class="col-md-6">
+                <h2 style="font-size: 22px;" class="mb-0">مشترک شدن در خبرنامه ما</h2>
+                <span>دریافت ایمیل درباره آخرین مغازه ها و پیشنهادات ویژه</span>
+            </div>
+            <div class="col-md-6 d-flex align-items-center">
+                <form action="#" class="subscribe-form">
+                    <div class="form-group d-flex">
+                        <input type="text" class="form-control" placeholder="ایمیل آدرس خود را وارد کنید">
+                        <input type="submit" value="اشتراک" class="submit px-3">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End Subscribe-->
+
+
+{% endblock %}

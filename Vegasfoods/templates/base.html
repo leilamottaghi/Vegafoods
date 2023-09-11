@@ -1,0 +1,321 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>سورس رایگان فروش فروت لند :: دریافت شده از وب روبیک</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link rel="stylesheet" href="{% static 'css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery.timepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+</head>
+
+<body class="goto-here">
+
+<!--header-->
+<div class="py-1 bg-primary">
+    <div class="container">
+        <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+            <div class="col-lg-12 d-block">
+                <div class="row d-flex">
+                    <div class="col-md pl-4 d-flex topper align-items-center">
+                        <div class="icon ml-2 d-flex justify-content-center align-items-center"><span
+                                class="icon-phone2"></span></div>
+                        <span class="text">02112345678</span>
+                    </div>
+                    <div class="col-md pl-4 d-flex topper align-items-center">
+                        <div class="icon ml-2 d-flex justify-content-center align-items-center"><span
+                                class="icon-paper-plane"></span></div>
+                        <span class="text">email@website.com</span>
+                    </div>
+                    <div class="col-md-5 pl-4 d-flex topper align-items-center text-lg-left">
+                        <span class="text">ارسال بین 3-5 روز کاری</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--header-->
+
+
+
+
+
+
+
+<!--Start Nav-->
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">فروت لند</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> منو
+        </button>
+
+        <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active"><a href="index.html" class="nav-link">خانه</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">خرید</a>
+                    <div class="dropdown-menu" id="top-dropdown-menu" aria-labelledby="dropdown04">
+                        <a class="dropdown-item" href="shop.html">خرید</a>
+                        <a class="dropdown-item" href="wishlist.html">محصولات مورد علاقه</a>
+                        <a class="dropdown-item" href="product-single.html">محصولات تکی</a>
+                        <a class="dropdown-item" href="cart.html">اشتراک</a>
+                        <a class="dropdown-item" href="checkout.html">سبد خرید</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a href="about.html" class="nav-link">فروت لند</a></li>
+                <li class="nav-item"><a href="blog.html" class="nav-link">بلاگ فروت لند</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">تماس با ما</a></li>
+                <!-- <li class="nav-item cta cta-colored">
+                    <a href="cart.html" class="nav-link">
+                        <span class="icon-shopping_cart">{{ cart|length }}  !!!! {{total_quantity}}</span>
+                    </a>
+                </li> -->              
+
+
+              <!-- <li class="nav-item cta cta-colored">
+                    <a href="cart.html" class="nav-link">
+                        <span class="icon-shopping_cart">{{total_quantity}}</span>
+                    </a>
+                </li>    -->
+
+                <li class="nav-item cta cta-colored">
+                    <a href="{% url 'shop:cart_view' %}" class="nav-link">
+                        <span class="icon-shopping_cart"></span>
+                        <span class="cart-quantity">{{ cart_quantity }}</span>
+                    </a>
+                </li>
+
+                
+                                
+                
+                
+                <li class="nav-item">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'accounts:profile' %}" class="nav-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                <path d="M8 0a4 4 0 0 1 4 4c0 2.02-1.98 3.75-3.884 3.98-.172.04-.22-.08-.22-.18v-.72C8.896 6.462 9.88 5 12 5c1.657 0 3 1.343 3 3a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3c0-1.657 1.343-3 3-3 .586 0 1.15.073 1.69.21.08.03.166.03.25-.03C6.218 1.25 7.547 0 9 0zm0 1a3 3 0 0 0-2.995 2.824L6 4a2 2 0 0 0-2 2c0 1.104.896 2 2 2 .418 0 .808-.126 1.135-.342.156-.097.35-.1.507 0A3.01 3.01 0 0 0 8 8a3 3 0 0 0 2.995-2.824L11 5a2 2 0 0 0-2-2zM1.505 13.903A.5.5 0 0 1 1 13.5V13a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v.5a.5.5 0 0 1-.505.503L11 14H5l-4.495-.097z"/>
+                            </svg>
+                            {{ user.username }}
+                        </a>
+                    {% else %}
+                        <a href="{% url 'accounts:login' %}" class="nav-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M10 1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8zM9.293 8.293a1 1 0 0 1 0 1.414l-3 3a1 1 0 1 1-1.414-1.414L6.586 9H1a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5.586l-1.293-1.293a1 1 0 0 1 1.414-1.414l3 3z"/>
+                                <path fill-rule="evenodd" d="M5 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-.5.5h-6a.5.5 0 0 1-.5-.5V2.5z"/>
+                            </svg>
+                            ورود 
+                        </a>
+                    {% endif %}
+                </li>
+                
+                <li class="nav-item">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'accounts:logout' %}" class="nav-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M6 1a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-7a1 1 0 0 1-1-1V1zm1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1z"/>
+                                <path fill-rule="evenodd" d="M4.5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5z"/>
+                                <path fill-rule="evenodd" d="M8 13a.5.5 0 0 0 .5-.5V2a.5.5 0 0 0-1 0v10a.5.5 0 0 0 .5.5z"/>
+                            </svg>
+                            خروج 
+                        </a>
+                    {% endif %}
+                </li>
+                <li class="nav-item">
+                    {% if not user.is_authenticated %}
+                        <a href="{% url 'accounts:register' %}" class="nav-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M9 7.5a.5.5 0 0 0-1 0V9H7a.5.5 0 0 0 0 1h1v1a.5.5 0 0 0 1 0v-1h1a.5.5 0 0 0 0-1H9V7.5zM8 0a4 4 0 0 0-4 4c0 1.697 1.155 3.131 2.715 3.814.200.089.417.134.635.134.218 0 .435-.045.635-.134C10.845 7.131 12 5.697 12 4a4 4 0 0 0-4-4zm0 1a3 3 0 0 1 2.995 2.824L11 4a2 2 0 0 1-2 2c-.418 0-.808-.126-1.135-.342a.163.163 0 0 1-.148-.158v-.724c0-.09.048-.21.134-.298C7.192 4.127 7.573 4 8 4a2 2 0 0 1 1.995 1.85L10 6v.117a3.009 3.009 0 0 1-.132.296.163.163 0 0 1-.147-.158C9.808 6.874 9.418 7 9 7a2 2 0 0 1-1.995-1.85L7 5V4.883A3.009 3.009 0 0 1 7.132 4.587a.163.163 0 0 1 .147-.158C7.192 4.126 7.573 4 8 4zM8 12a5.978 5.978 0 0 1-4.19-1.74a.5.5 0 0 0 .698.716A4.982 4.982 0 0 0 8 13a5.978 5.978 0 0 0 4.19-1.74a.5.5 0 0 0-.698-.716A4.982 4.982 0 0 1 8 12z"/>
+                            </svg>
+                            ثبت نام 
+                        </a>
+                    {% endif %}
+                </li>
+                            
+                <!-- <li class="nav-item">
+                    {% if user.is_staff %}
+                    <a href="{% url 'shop:admin_panel' %}"class="nav-link">dashboard</a>
+                {% endif %}
+                </li> -->
+
+              
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- END nav -->
+
+{% block content %}
+{% endblock %}
+
+
+
+
+<!--Start Footer-->
+<footer class="ftco-footer ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="mouse">
+                <a href="#" class="mouse-icon">
+                    <div class="mouse-wheel"><span class="ion-ios-arrow-up"></span></div>
+                </a>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">غذاهای گیاهی</h2>
+                    <p>یکی از بهترین راهها انتخاب درست مسیر زندگی هست با ما بسلامتی خود اهمیت بدین</p>
+                    <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                        <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                        <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                        <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4 ml-md-5">
+                    <h2 class="ftco-heading-2">منو</h2>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="py-2 d-block">خرید</a></li>
+                        <li><a href="#" class="py-2 d-block">درباره ی ما </a></li>
+                        <li><a href="#" class="py-2 d-block">کاتالوگ</a></li>
+                        <li><a href="#" class="py-2 d-block">ارتباط با ما</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">سوالی هست؟</h2>
+                    <div class="d-flex">
+                        <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
+                            <li><a href="#" class="py-2 d-block">اطلاعات حمل و نقل</a></li>
+                            <li><a href="#" class="py-2 d-block">شرایط بازگشت و تعویض</a></li>
+                            <li><a href="#" class="py-2 d-block">شرایط و ضوابط</a></li>
+                            <li><a href="#" class="py-2 d-block">سیاست حفظ حریم خصوصی</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">وب روبیک</h2>
+                    <div class="block-23 mb-3">
+                        <ul>
+                            <li><span class="icon icon-map-marker"></span><span class="text">ایران - شیراز - بلوار جمهوری</span>
+                            </li>
+                            <li><a href="#"><span class="icon icon-phone"></span><span
+                                    class="text">02112345678</span></a></li>
+                            <li><a href="#"><span class="icon icon-envelope"></span><span class="text">email@website.com</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <p class="copyright">
+                    <!-- Link back to webrubik can't be removed.  -->
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                    All rights reserved | This template is made by <a href="https://colorlib.com/" target="_blank">colorlib</a></br>
+                    فارسی و راست چین شده &copy توسط حمید معلمی <i class="icon-heart text-danger" aria-hidden="true"></i>
+                    از اعضای تیم <a href="https://webrubik.com/" target="_blank"> وب روبیک</a>
+                    <!-- Link back to webrubik can't be removed.  -->
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--End Footer-->
+
+<!-- loader -->
+<div id="ftco-loader" class="show fullscreen">
+    <svg class="circular" width="48px" height="48px">
+        <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>
+        <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00"/>
+    </svg>
+</div>
+
+
+
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/aos.js' %}"></script>
+<script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+<script src="{% static 'js/scrollax.min.js' %}"></script>
+<script src="{% static 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false' %}"></script>
+<script src="{% static 'js/google-map.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- <script>
+    function updateCartQuantity() {
+        $.ajax({
+            url: "{% url 'shop:get_cart_quantity' %}",
+            type: "GET",
+            dataType: "json",
+            success: function(response) {
+                $(".icon-shopping_cart").text(response.total_quantity);
+            },
+            error: function(error) {
+                console.error("Error: " + error);
+            }
+        });
+    }
+
+
+
+
+    $(document).ready(function() {
+        // updateCartQuantity(); 
+
+        $(".remove-from-cart-button").on("click", function() {
+
+            updateCartQuantity();
+        });
+    });
+</script> -->
+
+
+
+
+
+
+
+</body>
+</html>
